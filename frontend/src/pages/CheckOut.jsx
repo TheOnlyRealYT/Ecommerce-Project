@@ -20,11 +20,6 @@ export default function CheckOut() {
           <Link to='/cart/'>
             Return to cart
           </Link>
-          <button
-           onClick={ClearCart}
-           className="ml-4 px-3 py-1 bg-amber-400 text-white rounded-full text-xs font-medium hover:bg-amber-500 transition-colors">
-            Clear Cart
-          </button>
         </p>
         <h1 className="text-5xl font-black text-stone-800 leading-none playfair-display">
           Check Out
