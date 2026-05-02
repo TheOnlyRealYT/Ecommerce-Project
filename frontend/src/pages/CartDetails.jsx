@@ -11,6 +11,7 @@ export default function ProductDetails() {
     AddToCart,
     RemoveFromCart,
     UpdateCartItemQuantity,
+    ClearCart,
   } = useCart();
 
   return (
@@ -57,13 +58,27 @@ export default function ProductDetails() {
               ${total}
             </span>
           </p>
-          <div className="flex justify-end align-center">
-            <Link
-              to="/checkout/"
+          <div className="flex justify-end gap-10 align-center">
+            <button
+              onClick={ClearCart}
               className="col px-4 py-2 rounded-xl text-sm font-semibold tracking-wide text-white transition-all duration-200 hover:opacity-80 bg-linear-to-r from-[#d97706] via-[#e0841a] to-[#b45309]"
             >
-              Proceed to Checkout
-            </Link>
+              Clear Cart
+            </button>
+            {cartItems.length === 0 ? (
+              <p
+                className="cursor-not-allowed col px-4 py-2 rounded-xl text-sm font-semibold tracking-wide text-white bg-linear-to-r from-[#d97706] via-[#e0841a] to-[#b45309]"
+              >
+                No Items in Cart...
+              </p>
+            ) : (
+              <Link
+                to="/checkout/"
+                className="col px-4 py-2 rounded-xl text-sm font-semibold tracking-wide text-white transition-all duration-200 hover:opacity-80 bg-linear-to-r from-[#d97706] via-[#e0841a] to-[#b45309]"
+              >
+                Proceed to Checkout
+              </Link>
+            )}
           </div>
         </div>
       </div>
