@@ -45,7 +45,7 @@ def add_to_cart(request: Response):
     if not created:
         item.quantity += 1
         item.save()
-    serializer = CartSerializer(item)
+    serializer = CartSerializer(cart)
     return Response(serializer.data)
 
 @api_view(['DELETE'])
