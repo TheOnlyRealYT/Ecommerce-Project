@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setToken } from "../utils/auth";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 export default function Login() {
   const BASE = import.meta.env.VITE_DJANGO_BASE_URL;
+  const { UpdateCart } = useCart();
+
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -16,6 +19,7 @@ export default function Login() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    form.username = form.username.toLowerCase();
     try {
       const response = await fetch(`${BASE}api/token/`, {
         method: "POST",
@@ -34,6 +38,7 @@ export default function Login() {
       setMessage("Login successful! Redirecting...");
       setTimeout(() => {
         navigater("/");
+        UpdateCart(); //updates cart after login to preload cart data for user
       }, 1500);
     } catch (err) {
       console.error(err);

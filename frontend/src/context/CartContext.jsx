@@ -23,6 +23,10 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, []);
   
+  const UpdateCart = async () => {
+    fetchCart();
+  };
+
   //add product to cart
   const AddToCart = async (id) => {
     try {
@@ -87,7 +91,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const value = { cartItems, total, AddToCart, RemoveFromCart, UpdateCartItemQuantity, ClearCart };
+  const value = { cartItems, total, AddToCart, RemoveFromCart, UpdateCartItemQuantity, ClearCart, UpdateCart };
   return (
     <CartContext.Provider value={value}>
       {children}
