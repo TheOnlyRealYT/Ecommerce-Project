@@ -30,7 +30,7 @@ export default function Login() {
       });
       if (!response.ok) {
         const errorData = await response.json();
-        console.log(errorData);
+        setMessage(errorData.detail || "Unknown Error Occured");
         return;
       }
       const data = await response.json();
@@ -39,7 +39,7 @@ export default function Login() {
       setTimeout(() => {
         navigater("/");
         UpdateCart(); //updates cart after login to preload cart data for user
-      }, 1500);
+      }, 500);
     } catch (err) {
       console.error(err);
       setMessage("An error occurred. Please try again.");
@@ -98,6 +98,9 @@ export default function Login() {
             <p className="mt-4 text-center text-sm text-green-600">{message}</p>
           )}
         </form>
+        <p className="pt-5">
+          Dont have an account? <Link to='/signup/'>Sign-up!</Link>
+        </p>
       </div>
     </div>
   );

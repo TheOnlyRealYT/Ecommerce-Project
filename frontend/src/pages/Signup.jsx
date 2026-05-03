@@ -29,7 +29,7 @@ export default function Signup() {
       });
       if (!response.ok) {
         const errorData = await response.json();
-        console.log(errorData);
+        errorData.non_field_errors[0] ? setMessage(errorData.non_field_errors[0]) : setMessage(errorData.username[0])
         return;
       }
       const data = await response.json();
@@ -122,6 +122,9 @@ export default function Signup() {
             <p className="mt-4 text-center text-sm text-green-600">{message}</p>
           )}
         </form>
+        <p className="pt-5">
+          Already have an account? <Link to='/login/'>Log-in!</Link>
+        </p>
       </div>
     </div>
   );
