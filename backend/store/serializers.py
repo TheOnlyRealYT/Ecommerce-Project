@@ -45,6 +45,12 @@ class UserRegisteredSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'password', 'password2']
 
     def validate(self, data):
+        data['username'] = data['username'].lower()
+        if len(data['username']) < 2:
+            raise serializers.ValidationError("Username must be at least 2 characters long")
+        for char in data['username']:
+            if not (char.isalnum() or char in ['_', '-']):
+                raise serializers.ValidationError("Username can only contain letters, numbers, underscores and hyphens")
         if data['password'] != data['password2']:
             raise serializers.ValidationError("Passwords do not match")
         return data
