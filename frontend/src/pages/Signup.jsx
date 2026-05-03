@@ -29,7 +29,7 @@ export default function Signup() {
       });
       if (!response.ok) {
         const errorData = await response.json();
-        errorData.non_field_errors[0] ? setMessage(errorData.non_field_errors[0]) : setMessage(errorData.username[0])
+        errorData.non_field_errors ? setMessage(errorData.non_field_errors[0]) : setMessage(errorData.username[0])
         return;
       }
       const data = await response.json();

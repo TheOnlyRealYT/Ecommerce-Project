@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCart } from "../context/CartContext.jsx";
+import { authFetch } from "../utils/auth.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ export default function CheckOut() {
     e.preventDefault();
     setIsProcessing(true);
     try {
-      const response = await fetch(`${BASEURL}api/orders/create/`, {
+      const response = await authFetch(`${BASEURL}api/orders/create/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -16,7 +16,7 @@ export default function Login() {
   const navigater = useNavigate();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     form.username = form.username.toLowerCase();
@@ -55,6 +55,11 @@ export default function Login() {
       }}
     >
       <div className="max-w-5xl mx-auto mb-12">
+        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-amber-600 mb-2">
+          <Link to='/'>
+            View Our Collection as A Guest
+          </Link>
+        </p>
         <h1 className="text-5xl font-black text-stone-800 leading-none playfair-display">
           Login
         </h1>
@@ -99,7 +104,7 @@ export default function Login() {
           )}
         </form>
         <p className="pt-5">
-          Dont have an account? <Link to='/signup/'>Sign-up!</Link>
+          Dont have an account? <Link to="/signup/">Sign-up!</Link>
         </p>
       </div>
     </div>

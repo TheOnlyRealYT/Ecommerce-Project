@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { getAccessToken, removeToken } from "../utils/auth.js";
 
 const BASEURL = import.meta.env.VITE_DJANGO_BASE_URL;
 
@@ -13,6 +15,11 @@ const Badge = ({ children }) => (
 export default function ProductCard({ product }){
   const [hovered, setHovered] = useState(false);
   const { AddToCart } = useCart();
+  const navigate = useNavigate()
+
+  const handleAdd = (id) =>{
+    getAccessToken() ? AddToCart(id) : navigate('/login')
+  };
 
   return (
     <div
@@ -60,7 +67,7 @@ export default function ProductCard({ product }){
             ${product.price}
           </span>
           <button 
-          onClick = {() => AddToCart(product.id)}
+          onClick = {() => handleAdd(product.id)}
           className="px-4 py-2 rounded-xl text-sm font-semibold tracking-wide text-white transition-all duration-200 hover:opacity-80 bg-linear-to-r from-[#d97706] via-[#e0841a] to-[#b45309]">
             Add to Cart
           </button>

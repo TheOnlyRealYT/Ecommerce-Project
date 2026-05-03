@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import { useNavigate } from "react-router-dom";
 import { getAccessToken, removeToken } from "../utils/auth.js";
 
 export default function ProductDetails() {
@@ -13,6 +14,12 @@ export default function ProductDetails() {
   const { cartItems, AddToCart } = useCart();
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  const navigate = useNavigate()
+
+  const handleAdd = (id) =>{
+    getAccessToken() ? AddToCart(id) : navigate('/login')
+  };
 
   useEffect(() => {
     fetch(`${BASEURL}api/products/${id}/`)
@@ -170,7 +177,7 @@ export default function ProductDetails() {
                   ${product.price}
                 </span>
                 <button
-                  onClick={() => AddToCart(product.id)}
+                  onClick={() => handleAdd(product.id)}
                   className="cursor-pointer px-6 py-3 rounded-xl text-sm font-semibold tracking-wide text-white transition-all duration-200 hover:opacity-80 bg-linear-to-r from-[#d97706] via-[#e0841a] to-[#b45309]"
                 >
                   Add to Cart
