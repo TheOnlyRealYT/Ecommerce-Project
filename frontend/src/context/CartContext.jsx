@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, use } from "react";
+import { authFetch, getAccessToken } from "../utils/auth";
 
 const CartContext = createContext();
 
@@ -9,8 +10,7 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const response = await fetch(`${BASEURL}api/cart/`);
-      if (!response.ok) throw new Error("Failed to fetch cart.");
+      const response = await authFetch(`${BASEURL}api/cart/`);
       const data = await response.json();
       setCartItems(data.items || []);
       setTotal(data.total || 0);
@@ -26,7 +26,7 @@ export const CartProvider = ({ children }) => {
   //add product to cart
   const AddToCart = async (id) => {
     try {
-      const response = await fetch(`${BASEURL}api/cart/add/`, {
+      const response = await authFetch(`${BASEURL}api/cart/add/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
   //remove product from cart
   const RemoveFromCart = async (id) => {
     try {
-      const response = await fetch(`${BASEURL}api/cart/remove/`, {
+      const response = await authFetch(`${BASEURL}api/cart/remove/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await fetch(`${BASEURL}api/cart/update/`, {
+      const response = await authFetch(`${BASEURL}api/cart/update/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export const CartProvider = ({ children }) => {
   //clear cart
   const ClearCart = async () => {
     try {
-      const response = await fetch(`${BASEURL}api/cart/clear/`, {
+      const response = await authFetch(`${BASEURL}api/cart/clear/`, {
         method: "DELETE",
       });
       fetchCart();

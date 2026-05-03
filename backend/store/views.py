@@ -215,7 +215,8 @@ def register_user(request):
             {
                 "username": "johndoe",
                 "email": "johndoe@example.com",
-                "password": "password123"
+                "password": "password123",
+                "password2": "password123"
             }
         response:
             {"message": "User registered successfully", "user": {...}}
