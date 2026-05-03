@@ -8,6 +8,7 @@ from .serializers import CategorySerializer, ProductSerializer, CartItemSerializ
 
 # Create your views here.
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_products(request):
     '''
     Gets all products
@@ -21,6 +22,7 @@ def get_products(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_product_detail(request, pk):
     '''
     Gets a single product by id
@@ -40,6 +42,7 @@ def get_product_detail(request, pk):
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_category(request):
     '''
     Gets all categories
