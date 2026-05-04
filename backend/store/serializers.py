@@ -51,6 +51,10 @@ class UserRegisteredSerializer(serializers.ModelSerializer):
         for char in data['username']:
             if not (char.isalnum() or char in ['_', '-']):
                 raise serializers.ValidationError("Username can only contain letters, numbers, underscores and hyphens", code='invalid_username')
+        if len(data['password']) < 8:
+            raise serializers.ValidationError("Password must be greater than 8 characters", code='password_too_short')
+        if len(data['password']) > 20:
+            raise serializers.ValidationError("Password must be smaller than 20 characters", code='password_too_short')
         if data['password'] != data['password2']:
             raise serializers.ValidationError("Passwords do not match", code='password_mismatch')
         return data
