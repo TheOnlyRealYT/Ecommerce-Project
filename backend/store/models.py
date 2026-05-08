@@ -12,13 +12,13 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, unique=True)
-    discription = models.TextField(blank=True)
+    discription  = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='imgs/products/', blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name}, {self.discription}"
+        return f"{self.name}, {self.discription }"
     
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
