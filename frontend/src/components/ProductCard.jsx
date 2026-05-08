@@ -40,7 +40,7 @@ export default function ProductCard({ product }){
         <div className="relative bg-stone-50 h-52 flex items-center justify-center overflow-hidden group">
           {product.image ? (
             <img
-              src={`${BASEURL}${product.image}`}
+              src={product.image}
               alt={product.name}
               className="object-contain h-full w-full p-6 transition-transform duration-400 ease-in-out group-hover:scale-105"
             />

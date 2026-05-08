@@ -139,7 +139,7 @@ export default function ProductDetails() {
               style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
             >
               <img
-                src={`${BASEURL}${product.image}`}
+                src={product.image}
                 alt={product.name}
                 className="object-contain w-full max-h-80 transition-tranform duration-400 ease-in-out hover:scale-104 scale-100"
               />
