@@ -163,7 +163,7 @@ export default function ProductDetails() {
               <div className="h-0.5 w-16 bg-amber-400 rounded-full mb-5" />
 
               <p className="text-stone-500 leading-relaxed mb-8 whitespace-pre-line">
-                {product.discription}
+                {product.description }
               </p>
 
               <div className="flex items-center gap-6">
