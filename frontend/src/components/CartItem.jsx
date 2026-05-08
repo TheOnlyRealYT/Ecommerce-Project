@@ -15,7 +15,7 @@ export default function CartItem({ item, onIncrement, onDecrement, onRemove }) {
       <div className="bg-stone-50 rounded-xl flex items-center justify-center h-20 w-20 shrink-0 overflow-hproductden p-2">
         {item.product_image ? (
           <img
-            src={`${BASEURL}${item.product_image}`}
+            src={item.product_image}
             alt={item.name}
             className="object-contain h-full w-full"
           />

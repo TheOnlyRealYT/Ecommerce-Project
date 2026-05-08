@@ -59,7 +59,7 @@ export default function ProductCard({ product }){
             {product.name}
           </h2>
           <p className="text-sm text-stone-400 flex-1 mb-4 leading-relaxed">
-            {product.description }
+            {product.discription}
           </p>
         </Link>
         <div className="flex items-center justify-between mt-auto">
